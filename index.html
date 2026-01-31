@@ -2,46 +2,142 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>النقابة الحرة للمعلمين الموريتانيين</title>
-  <link rel="stylesheet" href="style.css">
+  <title>النقابة الحرة للمعلمين الموريتانيين SLEM</title>
+  <style>
+    body {
+      font-family: "Tahoma", sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 20px;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* توزيع بين الصورة والعنوان */
+    }
+    .header-container img {
+      width: 80px;   /* حجم الشعار */
+      height: auto;
+    }
+    .header-container h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    h2 {
+      background-color: #e0e0e0;
+      padding: 10px;
+      cursor: pointer;
+      margin: 0;
+    }
+    .content {
+      display: none;
+      padding: 15px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    section {
+      margin: 20px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    ul li {
+      margin: 5px 0;
+    }
+    a {
+      color: #004080;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <h1>النقابة الحرة للمعلمين الموريتانيين</h1>
-    <nav>
-      <ul>
-        <li><a href="#">الرئيسية</a></li>
-        <p>النقابة الحرة للمعلمين الموريتانيين</p>
-        <li><a href="#">من نحن</a></li>
-        <p>النقابة الحرة للمعلمين نقابة مهنية مستقلة عن الحكومات والأحزاب السياسية 
-        تأسست سنة 2006 ونالت ترخيصها سية 2007  وهي مكون أساسي من مكونات الكونفدرالية الوطنية 
-        للشغيلة الموريتانية CNTMو لدى النقابة منسقيات وأقسام  تغطي عموم التراب الوطني
-        </p>
-        <li><a href="#">آخر الأخبار</a></li>
-        <li><a href="#">الأنشطة</a></li>
-        <li><a href="#">اتصل بنا</a></li>
-      </ul>
-    </nav>
+    <div class="header-container">
+      <!-- ضع هنا مسار الصورة من جهازك -->
+      <img src="slem.png" alt="شعار النقابة">
+      <h1>النقابة الحرة للمعلمين الموريتانيين SLEM</h1>
+    </div>
+    <p>الموقع الرسمي للنقابة الحرة للمعلمين الموريتانيين</p>
   </header>
 
-  <main>
-    <section class="news">
-      <h2>آخر الأخبار</h2>
-      <article>
-        <h3>اجتماع الهيئة الإدارية</h3>
-        <p>انعقد اجتماع الهيئة الإدارية يوم الخميس لمناقشة قضايا المعلمين.</p>
-      </article>
-      <article>
-        <h3>إعلان عن دورة تدريبية</h3>
-        <p>تنظم النقابة دورة تدريبية حول أساليب التدريس الحديثة الأسبوع المقبل.</p>
-      </article>
-      <h2>الكتب</h2><a href="https://www.koutoubi.mr/" target="_blank">📚 موقع كُتُبِي</a>
+  <section>
+    <h2 onclick="toggleContent('about')">من نحن</h2>
+    <div id="about" class="content">
+      <p>
+   النقابة الحرة للمعلمين الموريتانيين هي هيئة غير حكومية 
+   تأسست سنة 2006 وحصلت على الترخيص سنة 2007 
+   لها منسقيات وأقسام تغطي عموم التراب الوطني وهي 
+   مكون من الكونفدرالية الوطنية للشغيلة الموريتانية 
+   SNTM
+      </p>
+    </div>
+  </section>
 
-    </section>
-  </main>
+  <section>
+    <h2 onclick="toggleContent('services')">خدماتنا</h2>
+    <div id="services" class="content">
+      <ul>
+        <li>الدفاع عن حقوق المعلم الموريتاني</li>
+        <li>رفع جودة التعليم</li>
+        <li>امتابعة تنفيذ سياسة الحكومة المتعلقة بالتعليم</li>
+      </ul>
+    </div>
+  </section>
 
-  <footer>
-    <p>© 2026 النقابة الحرة للمعلمين الموريتانيين - جميع الحقوق محفوظة</p>
-  </footer>
+  <section>
+    <h2 onclick="toggleContent('books')">روابط الكتب</h2>
+    <div id="books" class="content">
+      <ul>
+        <li><a href="https://www.koutoubi.mr/" target="_blank">كتبي</a></li>
+        <li><a href="https://example.com/book2" target="_blank">فارغ</a></li>
+        <li><a href="https://example.com/book3" target="_blank">فارغ</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2 onclick="toggleContent('social')">مواقع التواصل</h2>
+    <div id="social" class="content">
+      <ul>
+        <li><a href="" target="_blank">فيسبوك</a></li>
+        <li><a href="https://twitter.com/union" target="_blank">تويتر</a></li>
+        <li><a href="https://instagram.com/union" target="_blank">إنستغرام</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2 onclick="toggleContent('contact')">اتصل بنا</h2>
+    <div id="contact" class="content">
+      <p>
+        البريد الإلكتروني: info@slem.org<br>
+        الهاتف: 222-123456
+      </p>
+    </div>
+  </section>
+
+  <script>
+    function toggleContent(id) {
+      var content = document.getElementById(id);
+      if (content.style.display === "none" || content.style.display === "") {
+        content.style.display = "block";
+      } else {
+        content.style.display = "none";
+      }
+    }
+  </script>
+
 </body>
 </html>
