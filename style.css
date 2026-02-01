@@ -1,72 +1,283 @@
-body {
-  font-family: Tahoma, Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f9f9f9;
-  color: #333;
-  direction: rtl;
+/* متغيرات CSS للألوان والحجم */
+:root {
+  --primary: #004080;
+  --primary-dark: #003060;
+  --accent: #e0e0e0;
+  --bg-light: #f3f6fc;
+  --bg-white: #ffffff;
+  --text-dark: #222;
+  --text-light: #666;
+  --success: #27ae60;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, var(--bg-light) 0%, #e8f4ff 100%);
+  color: var(--text-dark);
+  direction: rtl;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ========== HEADER ========== */
 header {
-  background-color: #004080;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: white;
-  padding: 20px;
-  text-align: center;
+  padding: 24px 20px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
 }
 
 header h1 {
   margin: 0;
-  font-size: 28px;
+  font-size: 32px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+header p {
+  margin: 8px 0 0;
+  opacity: 0.95;
+  font-size: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========== NAVIGATION ========== */
+nav {
+  margin-top: 16px;
+  position: relative;
+  z-index: 1;
 }
 
 nav ul {
   list-style: none;
-  margin: 10px 0 0 0;
-  padding: 0;
   display: flex;
   justify-content: center;
-}
-
-nav ul li {
-  margin: 0 15px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 nav ul li a {
   color: white;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.15s ease;
+  display: inline-block;
 }
 
 nav ul li a:hover {
-  text-decoration: underline;
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+nav ul li a.active {
+  background: white;
+  color: var(--primary);
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ========== MAIN ========== */
 main {
-  padding: 20px;
+  padding: 24px 0;
+}
+
+/* ========== NEWS SECTION ========== */
+.news {
+  background: var(--bg-white);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
 }
 
 .news h2 {
-  color: #004080;
-  border-bottom: 2px solid #004080;
-  padding-bottom: 5px;
+  color: var(--primary);
+  font-size: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--accent);
+  position: relative;
+}
+
+.news h2::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  right: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--success);
 }
 
 .news article {
-  margin-bottom: 15px;
-  background: #fff;
-  padding: 10px;
-  border: 1px solid #ddd;
+  background: var(--bg-light);
+  padding: 18px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border-right: 4px solid var(--primary);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.news article:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateX(-4px);
+  background: var(--bg-white);
 }
 
 .news article h3 {
-  margin: 0 0 5px 0;
-  color: #004080;
+  margin: 0 0 10px 0;
+  color: var(--primary);
+  font-size: 18px;
+  font-weight: 600;
 }
 
+.news article p {
+  color: var(--text-light);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.news article .date {
+  font-size: 13px;
+  color: #999;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* ========== FOOTER ========== */
 footer {
-  background-color: #004080;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: white;
   text-align: center;
-  padding: 15px;
-  margin-top: 20px;
+  padding: 24px 20px;
+  margin-top: 40px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+}
+
+footer p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+footer .footer-brand {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+footer .footer-small {
+  opacity: 0.9;
+  font-size: 13px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 24px;
+  }
+  
+  header p {
+    font-size: 14px;
+  }
+
+  nav ul {
+    justify-content: flex-start;
+    margin-top: 12px;
+  }
+
+  nav ul li a {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .news {
+    padding: 16px;
+  }
+
+  .news article {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 16px;
+  }
+
+  header h1 {
+    font-size: 20px;
+  }
+
+  nav ul {
+    gap: 6px;
+  }
+
+  nav ul li a {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  main {
+    padding: 12px 0;
+  }
+
+  .news {
+    padding: 12px;
+  }
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.news article {
+  animation: fadeIn 0.3s ease;
 }
