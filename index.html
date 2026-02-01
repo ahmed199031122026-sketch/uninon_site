@@ -2,142 +2,277 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>النقابة الحرة للمعلمين الموريتانيين SLEM</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>منسقية لبراكنة</title>
   <style>
-    body {
-      font-family: "Tahoma", sans-serif;
-      background-color: #f9f9f9;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
+    :root{ --primary:#004080; --accent:#e0e0e0; --bg1:#f3f6fc; --bg2:#ffffff; --text:#133; --success:#27ae60; --warning:#f39c12; }
+    *{box-sizing:border-box}
+    body{ font-family:"Tahoma",sans-serif; background:linear-gradient(135deg,var(--bg1) 0%,#e8f4ff 100%); margin:0; color:var(--text); -webkit-font-smoothing:antialiased; }
+    .wrap{ max-width:1000px; margin:20px auto; padding:0 16px; }
+    
+    header{ 
+      background:linear-gradient(135deg,var(--primary) 0%,#003060 100%); 
+      color:#fff; 
+      padding:24px 20px; 
+      border-radius:12px; 
+      box-shadow:0 8px 24px rgba(0,64,128,0.15); 
+      position:relative;
+      overflow:hidden;
     }
-    header {
-      background-color: #004080;
-      color: white;
-      padding: 20px;
+    header::before{ content:''; position:absolute; top:-50%; right:-50%; width:400px; height:400px; background:rgba(255,255,255,0.05); border-radius:50%; }
+    
+    .header-container{ 
+      display:flex; 
+      align-items:center; 
+      justify-content:space-between; 
+      gap:16px; 
+      flex-direction:row-reverse; 
+      position:relative;
+      z-index:1;
     }
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between; /* توزيع بين الصورة والعنوان */
+    .logo{ 
+      display:flex; 
+      align-items:center; 
+      justify-content:center;
+      width:90px;
+      height:90px;
+      background:rgba(255,255,255,0.1);
+      border-radius:12px; 
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
+      transition:transform .2s ease;
     }
-    .header-container img {
-      width: 80px;   /* حجم الشعار */
-      height: auto;
+    .logo:hover{ transform:scale(1.05); }
+    .logo img{ 
+      width:80px; 
+      height:80px; 
+      object-fit:contain;
+      border-radius:8px;
     }
-    .header-container h1 {
-      margin: 0;
-      font-size: 24px;
+    .header-text h1{ 
+      margin:0; 
+      font-size:28px; 
+      line-height:1.2;
+      font-weight:700;
+      text-shadow:0 2px 4px rgba(0,0,0,0.1);
     }
-    h2 {
-      background-color: #e0e0e0;
-      padding: 10px;
-      cursor: pointer;
-      margin: 0;
+    .header-text p{ 
+      margin:8px 0 0; 
+      opacity:.95; 
+      font-size:15px;
+      font-weight:500;
     }
-    .content {
-      display: none;
-      padding: 15px;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      margin-bottom: 10px;
+    
+    .top-nav{ 
+      display:flex; 
+      gap:8px; 
+      justify-content:flex-end; 
+      margin-top:16px; 
+      flex-wrap:wrap; 
+      position:relative;
+      z-index:1;
     }
-    section {
-      margin: 20px;
+    .top-nav button{ 
+      background:rgba(255,255,255,0.15); 
+      color:#fff;
+      border:1px solid rgba(255,255,255,0.2);
+      padding:10px 16px; 
+      cursor:pointer; 
+      border-radius:24px; 
+      font-size:14px; 
+      font-weight:500;
+      transition:all .15s ease;
     }
-    ul {
-      list-style-type: none;
-      padding: 0;
+    .top-nav button:hover{ 
+      background:rgba(255,255,255,0.25); 
+      transform:translateY(-2px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.15);
     }
-    ul li {
-      margin: 5px 0;
+    .top-nav button.active{ 
+      background:#fff; 
+      color:var(--primary); 
+      box-shadow:0 4px 12px rgba(0,0,0,0.15);
+      font-weight:600;
     }
-    a {
-      color: #004080;
-      text-decoration: none;
+    
+    main{ margin-top:24px; }
+    .card{ 
+      background:var(--bg2); 
+      border:1px solid #e6e9ef; 
+      border-radius:12px; 
+      padding:20px; 
+      box-shadow:0 4px 16px rgba(10,20,50,0.06); 
+      margin-bottom:16px; 
+      display:none;
+      transition:all .2s ease;
     }
-    a:hover {
-      text-decoration: underline;
+    .card:hover{ box-shadow:0 6px 20px rgba(10,20,50,0.1); }
+    .card.open{ display:block; animation:slideDown .25s ease; }
+    
+    @keyframes slideDown{ 
+      from{ opacity:0; transform:translateY(-8px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+    
+    .card h2{ 
+      margin:0 0 12px; 
+      color:var(--primary);
+      font-size:18px;
+      font-weight:600;
+      border-bottom:2px solid var(--accent);
+      padding-bottom:8px;
+    }
+    .card p{ 
+      margin:0; 
+      line-height:1.8;
+      color:#333;
+    }
+    
+    ul{ list-style:none; padding:0; margin:0; }
+    ul li{ 
+      padding:10px 0 10px 16px; 
+      border-bottom:1px solid #f0f0f0;
+      position:relative;
+      transition:all .15s ease;
+    }
+    ul li:hover{ padding-left:20px; background:rgba(0,64,128,0.02); }
+    ul li::before{ 
+      content:'✓'; 
+      position:absolute; 
+      left:0; 
+      color:var(--success);
+      font-weight:bold;
+    }
+    ul li:last-child{ border-bottom:0; }
+    
+    a{ 
+      color:var(--primary); 
+      text-decoration:none;
+      font-weight:500;
+      transition:all .15s ease;
+    }
+    a:hover{ 
+      color:#003060;
+      text-decoration:underline;
+    }
+    
+    footer.site-footer{ 
+      margin-top:24px; 
+      padding:20px; 
+      text-align:center; 
+      color:#666; 
+      font-size:14px; 
+      background:linear-gradient(90deg,rgba(0,64,128,0.03),rgba(39,174,96,0.03));
+      border-radius:12px;
+      border-top:2px solid var(--accent);
+    }
+    .footer-brand{ 
+      font-weight:700; 
+      color:var(--primary);
+      font-size:15px;
+    }
+    .footer-small{ 
+      opacity:.8; 
+      margin-top:8px; 
+      font-size:13px;
+    }
+    
+    @media (max-width:640px){ 
+      .header-container{ flex-direction:column; align-items:flex-start; gap:12px; }
+      .header-text h1{ font-size:22px; }
+      .top-nav{ justify-content:flex-start; margin-top:12px; }
+      .card{ padding:16px; }
     }
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <header>
+      <div class="header-container">
+        <div class="logo" aria-hidden="true">
+          <img src="file:///C:/Users/HP/Desktop/slem.jpg" alt="شعار منسقية لبراكنة">
+        </div>
+        <div class="header-text">
+          <h1>منسقية لبراكنة</h1>
+          <p>الموقع الرسمي لمنسقية لبراكنة — دعم المعلمين وتطوير التعليم في الولاية</p>
+        </div>
+      </div>
 
-  <header>
-    <div class="header-container">
-      <!-- ضع هنا مسار الصورة من جهازك -->
-      <img src="slem.png" alt="شعار النقابة">
-      <h1>النقابة الحرة للمعلمين الموريتانيين SLEM</h1>
-    </div>
-    <p>الموقع الرسمي للنقابة الحرة للمعلمين الموريتانيين</p>
-  </header>
+      <nav class="top-nav" role="navigation" aria-label="روابط الموقع">
+        <button data-target="about" class="active">من نحن</button>
+        <button data-target="services">خدماتنا</button>
+        <button data-target="books">روابط الكتب</button>
+        <button data-target="social">مواقع التواصل</button>
+        <button data-target="contact">اتصل بنا</button>
+      </nav>
+    </header>
 
-  <section>
-    <h2 onclick="toggleContent('about')">من نحن</h2>
-    <div id="about" class="content">
-      <p>
-   النقابة الحرة للمعلمين الموريتانيين هي هيئة غير حكومية 
-   تأسست سنة 2006 وحصلت على الترخيص سنة 2007 
-   لها منسقيات وأقسام تغطي عموم التراب الوطني وهي 
-   مكون من الكونفدرالية الوطنية للشغيلة الموريتانية 
-   SNTM
-      </p>
-    </div>
-  </section>
+    <main>
+      <section id="about" class="card open" aria-labelledby="about">
+        <h2>من نحن</h2>
+        <p>
+          منسقية لبراكنة هي إحدى منسقيات النقابة الحرة للمعلمين الموريتانيين أو بالأحرى هي صورة مصغرة منها
+          يديرها حاليا عضو المكتب التنفيذي سيدي محمد محمد يحي ولد حيبلا
+        </p>
+      </section>
 
-  <section>
-    <h2 onclick="toggleContent('services')">خدماتنا</h2>
-    <div id="services" class="content">
-      <ul>
-        <li>الدفاع عن حقوق المعلم الموريتاني</li>
-        <li>رفع جودة التعليم</li>
-        <li>امتابعة تنفيذ سياسة الحكومة المتعلقة بالتعليم</li>
-      </ul>
-    </div>
-  </section>
+      <section id="services" class="card" aria-labelledby="services">
+        <h2>خدماتنا</h2>
+        <ul>
+          <li>الدفاع عن حقوق المعلم المحلي</li>
+          <li>رفع جودة التعليم في الولاية</li>
+          <li>متابعة تنفيذ السياسات التعليمية المحلية</li>
+        </ul>
+      </section>
 
-  <section>
-    <h2 onclick="toggleContent('books')">روابط الكتب</h2>
-    <div id="books" class="content">
-      <ul>
-        <li><a href="https://www.koutoubi.mr/" target="_blank">كتبي</a></li>
-        <li><a href="https://example.com/book2" target="_blank">فارغ</a></li>
-        <li><a href="https://example.com/book3" target="_blank">فارغ</a></li>
-      </ul>
-    </div>
-  </section>
+      <section id="books" class="card" aria-labelledby="books">
+        <h2>روابط الكتب</h2>
+        <ul>
+          <li><a href="https://www.koutoubi.mr/" target="_blank" rel="noopener">كتبي</a></li>
+          <li><a href="https://example.com/book2" target="_blank" rel="noopener">موارد تعليمية</a></li>
+          <li><a href="https://example.com/book3" target="_blank" rel="noopener">مكتبة رقمية</a></li>
+        </ul>
+      </section>
 
-  <section>
-    <h2 onclick="toggleContent('social')">مواقع التواصل</h2>
-    <div id="social" class="content">
-      <ul>
-        <li><a href="" target="_blank">فيسبوك</a></li>
-        <li><a href="https://twitter.com/union" target="_blank">تويتر</a></li>
-        <li><a href="https://instagram.com/union" target="_blank">إنستغرام</a></li>
-      </ul>
-    </div>
-  </section>
+      <section id="social" class="card" aria-labelledby="social">
+        <h2>مواقع التواصل</h2>
+        <ul>
+          <li><a href="#" target="_blank" rel="noopener">فيسبوك</a></li>
+          <li><a href="https://twitter.com/union" target="_blank" rel="noopener">تويتر</a></li>
+          <li><a href="https://instagram.com/union" target="_blank" rel="noopener">إنستغرام</a></li>
+        </ul>
+      </section>
 
-  <section>
-    <h2 onclick="toggleContent('contact')">اتصل بنا</h2>
-    <div id="contact" class="content">
-      <p>
-        البريد الإلكتروني: info@slem.org<br>
-        الهاتف: 222-123456
-      </p>
-    </div>
-  </section>
+      <section id="contact" class="card" aria-labelledby="contact">
+        <h2>اتصل بنا</h2>
+        <p>
+          <strong>البريد الإلكتروني:</strong> sidimohamed@gmil.com<br><br>
+          <strong>الهاتف:</strong> 222-43747483<br><br>
+          <strong>العنوان:</strong> ولاية لبراكنة، الجمهورية الإسلامية الموريتانية
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-brand">© <span id="year"></span> منسقية لبراكنة — جميع الحقوق محفوظة</div>
+      <div class="footer-small"> | النقابة الحرة للمعلمين الموريتانيين SLEM</div>
+    </footer>
+  </div>
 
   <script>
-    function toggleContent(id) {
-      var content = document.getElementById(id);
-      if (content.style.display === "none" || content.style.display === "") {
-        content.style.display = "block";
-      } else {
-        content.style.display = "none";
+    document.addEventListener('DOMContentLoaded', function(){
+      const buttons = document.querySelectorAll('.top-nav button');
+      const cards = document.querySelectorAll('.card');
+      function openCard(id){
+        cards.forEach(c=> c.id===id ? c.classList.add('open') : c.classList.remove('open'));
+        buttons.forEach(b=> b.dataset.target===id ? b.classList.add('active') : b.classList.remove('active'));
       }
-    }
+      buttons.forEach(btn=>{
+        btn.addEventListener('click', ()=> openCard(btn.dataset.target));
+        btn.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); btn.click(); }});
+      });
+      openCard('about');
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
   </script>
-
 </body>
 </html>
